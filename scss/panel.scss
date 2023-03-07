@@ -1,0 +1,23 @@
+@import "style.scss";
+
+header {
+  width: 100%;
+  height: 90px;
+  background-color: $turquoiseColor;
+}
+
+aside {
+  width: 270px;
+  height: calc(100% - 90px);
+  background-color: $yellowColor;
+  position: absolute;
+}
+
+main {
+  width: calc(100% - 270px);
+  height: calc(100% - 90px);
+  background-color: $navyBlueColor;
+  position: absolute;
+  top: 90px;
+  left: 270px;
+}
