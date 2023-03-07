@@ -1,15 +1,13 @@
 const path = require("path");
 const webpack = require("webpack");
 
-const entryPath = "";
-
 module.exports = {
   mode: "none",
-  entry: `./${entryPath}/js/app.js`,
+  entry: `./js/app.js`,
   devtool: "inline-source-map",
   output: {
     filename: "out.js",
-    path: path.resolve(__dirname, `${entryPath}/build`),
+    path: path.resolve(__dirname, `./build`),
     clean: true,
   },
   devServer: {
@@ -35,6 +33,15 @@ module.exports = {
         test: /\.js$/,
         exclude: /node_modules/,
         loader: "babel-loader",
+      },
+      {
+        test: /\.s[ac]ss$/i,
+        exclude: /node_modules/,
+        use: [
+          "style-loader",
+          "css-loader",
+          "sass-loader",
+        ],
       },
     ],
   },
