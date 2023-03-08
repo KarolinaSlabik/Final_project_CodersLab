@@ -1,0 +1,14 @@
+@import "style.scss";
+
+.button {
+  width: 198px;
+  height: 48px;
+  border-radius: 10px;
+  background-color: $navyBlueColor;
+  color: $yellowColor;
+  margin-top: 45px;
+  text-align: center;
+  line-height: 48px;
+  font-size: 20px;
+  font-family: Inter, sans-serif;
+}
