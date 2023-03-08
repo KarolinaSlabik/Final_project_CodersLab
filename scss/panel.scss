@@ -56,6 +56,26 @@ header {
         }
       }
     }
+
+    .nameAndTwoButtonsContainer {
+      width: 450px;
+      height: 45px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      .userName {
+        font-size: 24px;
+        font-family: Inter, sans-serif;
+        color: $navyBlueColor;
+        height: 45px;
+        width: 232px;
+        font-weight: 600;
+        text-align: right;
+        position: relative;
+        top: 10px;
+        margin-right: 18px;
+      }
+    }
   }
 }
 

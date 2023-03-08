@@ -24,15 +24,22 @@ const Panel = () => {
                     </span>
                     <span className="logoText">Times <span className="orangeLogoText">Up</span></span>
                 </div>
+                <div className="nameAndTwoButtonsContainer">
+                    <div className="userName"> nazwa użytkownika </div>
+                    <Button style={{color:"#F2C894", backgroundColor:"#F25C05", width:"138px", marginTop: "0"}}> Wyloguj </Button>
+                    <Button style={{width:"48px", marginTop: "0", display: "flex", justifyContent: "center", alignItems: "center"}}>
+                        <img alt="gear" src="../assets/gear-22.svg" style={{width:"33px", height:"33px"}} />
+                    </Button>
+                </div>
             </div>
         </header>
         <aside>
             <div className="buttonContainer">
-                <Button text="Panel Główny"></Button>
-                <Button text="White list"></Button>
-                <Button text="Black list"></Button>
-                <Button text="Statystyki"></Button>
-                <Button text="Start" style = {{color:"#F2C894", backgroundColor:"#F25C05"}}></Button>
+                <Button> Panel główny </Button>
+                <Button> White list </Button>
+                <Button> Black list </Button>
+                <Button> Statystyki </Button>
+                <Button style={{color:"#F2C894", backgroundColor:"#F25C05"}}> Start </Button>
             </div>
         </aside>
         <main></main>
