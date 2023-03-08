@@ -1,0 +1,28 @@
+@import "style.scss";
+
+
+.inputContainer {
+  .loginLabel {
+    display: block;
+  }
+  .loginLabel {
+    font-family: Inter, sans-serif;
+    color: $navyBlueColor;
+    font-size: 20px;
+  }
+  .loginInput {
+    width: 400px;
+    height: 60px;
+    background-color: $beigeColor;
+    border-radius: 10px;
+    border: none;
+    margin: 10px 0;
+    padding-left: 20px;
+    font-size: 20px;
+    font-family: Inter, sans-serif;
+    color: $orangeColor;
+    &:focus {
+      outline: none;
+    }
+  }
+}

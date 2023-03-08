@@ -7,6 +7,7 @@ import {
 } from 'react-router-dom';
 import { Browser } from './browser';
 import { Panel } from './panel';
+import { LoginForm } from './login_form';
 
 import "../scss/style.scss"
 const App = () => {
@@ -15,7 +16,8 @@ const App = () => {
             <Routes>
                 {/*<Route path='/' element={<Browser />} />*/}
                 {/*<Route path='panel' element={<Panel />} />*/}
-                <Route path='/' element={<Panel />} />
+                {/*<Route path='/' element={<Panel />} />*/}
+                <Route path='/' element={<LoginForm />} />
             </Routes>
         </BrowserRouter>
     );

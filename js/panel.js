@@ -1,7 +1,6 @@
 import React from 'react';
 import "../scss/panel.scss";
 import { Button } from "./button"
-
 const Panel = () => {
 
     return <>
