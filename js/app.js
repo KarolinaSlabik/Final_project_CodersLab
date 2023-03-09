@@ -10,6 +10,7 @@ import { Panel } from './panel';
 import { LoginForm } from './login_form';
 
 import "../scss/style.scss"
+import {AdminPanel} from "./admin_panel";
 const App = () => {
     return (
         <BrowserRouter>
@@ -17,7 +18,7 @@ const App = () => {
                 <Route path='/' element={<Browser />} />
                 {/*<Route path='panel' element={<Panel />} />*/}
                 {/*<Route path='/' element={<Panel />} />*/}
-                {/*<Route path='/' element={<LoginForm />} />*/}
+                <Route path='/panel' element={<AdminPanel />} />
             </Routes>
         </BrowserRouter>
     );

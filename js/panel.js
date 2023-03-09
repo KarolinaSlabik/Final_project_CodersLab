@@ -1,7 +1,8 @@
 import React from 'react';
 import "../scss/panel.scss";
-import { Button } from "./button"
-const Panel = () => {
+import { Button } from "./button";
+import { Link } from  "react-router-dom";
+const Panel = (props) => {
 
     return <>
         <header>
@@ -24,8 +25,8 @@ const Panel = () => {
                     <span className="logoText">Times <span className="orangeLogoText">Up</span></span>
                 </div>
                 <div className="nameAndTwoButtonsContainer">
-                    <div className="userName"> nazwa użytkownika </div>
-                    <Button style={{color:"#F2C894", backgroundColor:"#F25C05", width:"138px", marginTop: "0"}}> Wyloguj </Button>
+                    <div className="userName"> {props.userName} </div>
+                    <Button style={{color:"#F2C894", backgroundColor:"#F25C05", width:"138px", marginTop: "0"}} onClick={props.logOutEvent}> Wyloguj </Button>
                     <Button style={{width:"48px", marginTop: "0", display: "flex", justifyContent: "center", alignItems: "center"}}>
                         <img alt="gear" src="../assets/gear-22.svg" style={{width:"33px", height:"33px"}} />
                     </Button>
@@ -38,7 +39,8 @@ const Panel = () => {
                 <Button> White list </Button>
                 <Button> Black list </Button>
                 <Button> Statystyki </Button>
-                <Button style={{color:"#F2C894", backgroundColor:"#F25C05"}}> Start </Button>
+                {/*<Button style={{color:"#F2C894", backgroundColor:"#F25C05"}}> Start </Button>*/}
+                <Link to="/">Start</Link>
             </div>
         </aside>
         <main></main>

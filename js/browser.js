@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 import "../scss/browser.scss";
-import {Button} from "./button";
+import { Link } from  "react-router-dom";
 const Browser = () => {
 
     return <>
@@ -33,13 +33,13 @@ const Browser = () => {
                     </div>
                 </div>
                 <input className="browserInput" />
-                <Button style={{width:"48px", marginTop: "0", display: "flex", justifyContent: "center", alignItems: "center", backgroundColor: "#F25C05"}}>
+                <Link to="/panel">
                     <img alt="close icon" src="../assets/Close-icon-9iuh.svg" style={{width:"33px", height:"33px"}} />
-                </Button>
+                </Link>
             </div>
         </header>
         <section className="mainBrowserSection">
-
+            <embed src=""  className="realBrowser"></embed>
         </section>
     </>
 }

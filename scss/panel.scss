@@ -88,6 +88,21 @@ aside {
     width: 200px;
     height: auto;
     margin: 0 auto;
+    a {
+      width: 198px;
+      height: 48px;
+      border-radius: 10px;
+      background-color: $orangeColor;
+      color: $beigeColor;
+      margin-top: 45px;
+      text-align: center;
+      line-height: 48px;
+      font-size: 20px;
+      font-family: Inter, sans-serif;
+      cursor: pointer;
+      display: block;
+      text-decoration: none;
+    }
   }
 }
 
