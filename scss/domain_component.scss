@@ -1,0 +1,33 @@
+@import "style.scss";
+
+.domainComponent {
+  width: calc(100% - 136px);
+  height: 141px;
+  border-radius: 10px;
+  background-color: $beigeColor;
+  color: $navyBlueColor;
+  margin-top: 45px;
+  margin-left: 40px;
+  font-size: 20px;
+  font-family: Inter, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .domainTextBox {
+    width: calc(100% - 220px);
+    height: 111px;
+    p {
+      margin-top: 0;
+    }
+  }
+  .domainButtonBox {
+    width: 194px;
+    height: 111px;
+    display: flex;
+    justify-content: space-between;
+    .binIcon {
+      width: 30px;
+      height: 30px;
+    }
+  }
+}

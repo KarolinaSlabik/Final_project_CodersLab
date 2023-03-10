@@ -3,14 +3,24 @@ import {LoginForm} from "./login_form";
 import {Panel} from "./panel";
 
 const AdminPanel = () => {
-    const [logIn, setLogIn] = useState(false);
-    const [userName, setUserName] = useState("");
+    let memoUserName = "";
+    let memoUserLogIn = false;
+    const memoUser = window.localStorage.getItem('user');
+    if (memoUser !== null && memoUser !== undefined) {
+        memoUserLogIn = true;
+        memoUserName = memoUser;
+    }
+
+    const [logIn, setLogIn] = useState( memoUserLogIn );
+    const [userName, setUserName] = useState( memoUserName );
     const logInEvent = (name) => {
         setLogIn(true);
         setUserName( name );
+        window.localStorage.setItem('user', name);
     }
     const logOutEvent = () => {
         setLogIn(false);
+        window.localStorage.setItem('user', null);
     }
 
     if(logIn === true) {

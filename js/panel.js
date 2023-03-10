@@ -1,8 +1,23 @@
-import React from 'react';
+import React, {useState} from 'react';
 import "../scss/panel.scss";
 import { Button } from "./button";
 import { Link } from  "react-router-dom";
+import { MainSection } from "./main_section";
+
 const Panel = (props) => {
+    const [sectionType, setSectionType] = useState("MainPanel");
+    const goToMainPanelEvent = () => {
+        setSectionType( "MainPanel");
+    }
+    const goToWhiteListEvent = () => {
+        setSectionType( "WhiteList");
+    }
+    const goToBlackListEvent = () => {
+        setSectionType( "BlackList");
+    }
+    const goToStatisticsEvent = () => {
+        setSectionType( "Statistics");
+    }
 
     return <>
         <header>
@@ -35,15 +50,16 @@ const Panel = (props) => {
         </header>
         <aside>
             <div className="buttonContainer">
-                <Button> Panel główny </Button>
-                <Button> White list </Button>
-                <Button> Black list </Button>
-                <Button> Statystyki </Button>
-                {/*<Button style={{color:"#F2C894", backgroundColor:"#F25C05"}}> Start </Button>*/}
+                <Button onClick={goToMainPanelEvent}> Panel główny </Button>
+                <Button onClick={goToWhiteListEvent}> White list </Button>
+                <Button onClick={goToBlackListEvent}> Black list </Button>
+                <Button onClick={goToStatisticsEvent}> Statystyki </Button>
                 <Link to="/">Start</Link>
             </div>
         </aside>
-        <main></main>
+        <main>
+            < MainSection sectionType={ sectionType }/>
+        </main>
     </>
 }
 

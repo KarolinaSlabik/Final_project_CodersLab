@@ -6,18 +6,15 @@ import {
     Routes,
 } from 'react-router-dom';
 import { Browser } from './browser';
-import { Panel } from './panel';
-import { LoginForm } from './login_form';
+import {AdminPanel} from "./admin_panel";
 
 import "../scss/style.scss"
-import {AdminPanel} from "./admin_panel";
+
 const App = () => {
     return (
         <BrowserRouter>
             <Routes>
                 <Route path='/' element={<Browser />} />
-                {/*<Route path='panel' element={<Panel />} />*/}
-                {/*<Route path='/' element={<Panel />} />*/}
                 <Route path='/panel' element={<AdminPanel />} />
             </Routes>
         </BrowserRouter>

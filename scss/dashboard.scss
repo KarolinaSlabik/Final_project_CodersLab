@@ -1,0 +1,16 @@
+@import "style.scss";
+
+.domainList {
+  width: 100%;
+  height: 710px;
+  //overflow-y: scroll;
+}
+.plusIcon {
+  width: 48px;
+  height: 48px;
+  transform: rotate(45deg);
+  position: relative;
+  left: 1494px;
+  top: 45px;
+}
+
