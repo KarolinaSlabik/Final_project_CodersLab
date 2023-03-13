@@ -6,9 +6,9 @@ const DomainComponent = (props) => {
     return <>
         <div className="domainComponent">
             <div className="domainTextBox">
-                <p>Domena: </p>
-                <p>Czas: </p>
-                <p>Przerwa: </p>
+                <p>Domena: <span>{props.domain}</span></p>
+                <p>Czas: <span>{props.time}</span></p>
+                <p>Przerwa: <span>{props.break}</span></p>
             </div>
             <div className="domainButtonBox">
                 <Button style={{color:"#F2C894", backgroundColor:"#F25C05", width:"138px", marginTop: "0"}}> Edytuj </Button>
