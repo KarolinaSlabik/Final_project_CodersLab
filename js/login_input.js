@@ -6,7 +6,7 @@ const LoginInput = (props) => {
     return <>
         <div className="inputContainer">
             <label className="loginLabel" htmlFor={id}>{props.text}</label>
-            <input className="loginInput" type={props.type} id={id} onChange={props.onChange} />
+            <input className="loginInput" type={props.type} id={id} onChange={props.onChange} defaultValue={props.value}/>
         </div>
 
     </>

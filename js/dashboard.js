@@ -1,20 +1,32 @@
-import React, { useState, useId } from 'react';
+import React, { useState, useEffect } from 'react';
 import { some_domain_list } from "./some_domain_list";
-import {Button} from "./button";
 import {DomainComponent} from "./domain_component";
 import { PopUpForm } from "./pop_up_form"
 
 import "../scss/dashboard.scss";
-const Dashboard = (props) => {
-    const [domainList, setDomainList] = useState(some_domain_list);
+const Dashboard = () => {
+    const memoDomainList = window.localStorage.getItem('domainList');
+
+    const [domainList, setDomainList] = useState(JSON.parse(memoDomainList) || []);
+    const [editingDomain, setEditingDomain] = useState({});
     const [showPopUpFormAdd, setShowPopUpFormAdd] = useState(false);
     const [showPopUpFormEdit, setShowPopUpFormEdit] = useState(false);
 
-    const deleteDomainEvent = (event) => {
-        console.log("odjęto domenę");
+    useEffect(() => {
+        window.localStorage.setItem('domainList', JSON.stringify(domainList));
+    }, [domainList])
+
+    const deleteDomainEvent = (id) => {
+        setDomainList(prevState => prevState.filter((element) => {
+            return (element.id !== id);
+        }));
     }
     const addDomainEvent = () => {
         setShowPopUpFormAdd(true);
+    }
+    const editDomainEvent = (domain, time, breakTime,id) => {
+        setEditingDomain({url: domain, time: time, break: breakTime, id: id});
+        setShowPopUpFormEdit(true);
     }
     const closePopUpFormEvent = () => {
         setShowPopUpFormAdd(false);
@@ -44,14 +56,14 @@ const Dashboard = (props) => {
     if (showPopUpFormAdd) {
         popUpForm = < PopUpForm onClose={closePopUpFormEvent} onDone={addingDomainTimeAndBreak} />;
     } else if (showPopUpFormEdit) {
-        popUpForm = < PopUpForm onClose={closePopUpFormEvent} onDone={editingDomainTimeAndBreak} />;
+        popUpForm = < PopUpForm onClose={closePopUpFormEvent} onDone={editingDomainTimeAndBreak} domainData={editingDomain} />;
     }
 
     return <>
         <div className="dashboard">
             <div className="domainList">
                 { domainList.map((element) => {
-                    return <DomainComponent domain={element.url} time={element.time} break={element.break} />
+                    return <DomainComponent domain={element.url} time={element.time} break={element.break} id={element.id} deleteClicked={deleteDomainEvent} editClicked={editDomainEvent} />
                 })}
             </div>
             <img alt="plus icon" className="plusIcon" src="../assets/plus-icon.svg" onClick={addDomainEvent} />
