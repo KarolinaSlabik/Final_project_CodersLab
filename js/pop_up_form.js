@@ -15,10 +15,18 @@ const PopUpForm = (props) => {
         setDomain(event.target.value);
     }
     const changeTimeEvent = (event) => {
-        setTime(event.target.value);
+        if(typeof(event.target.value) === "string") {
+            setTime(parseInt(event.target.value));
+        } else {
+            setTime(event.target.value);
+        }
     }
     const changeBreakTimeEvent = (event) => {
-        setBreakTime(event.target.value);
+        if(typeof(event.target.value) === "string") {
+            setBreakTime(parseInt(event.target.value));
+        } else {
+            setBreakTime(event.target.value);
+        }
     }
 
     return <>

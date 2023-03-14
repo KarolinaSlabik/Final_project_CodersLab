@@ -1,22 +1,91 @@
-import React, { useRef }from 'react';
+import React, {useRef, useState, useEffect} from 'react';
 import "../scss/browser.scss";
 import { Link } from  "react-router-dom";
+import {PopUpEnd} from "./pop_up_end";
+
 const Browser = () => {
+    const [showPopUpEnd, setShowPopUpEnd] = useState(false);
+
     const iframeElement = useRef(null);
-    const previousPageEvent = (event) => {
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            const domain = iframeElement.current.src;
+            if(domain === "") {
+                return null;
+            }
+            let findDomain;
+            let memoDomainList = JSON.parse(window.localStorage.getItem('domainList')) || [];
+            memoDomainList.forEach((element)=> {
+                if(element.url === domain) {
+                    findDomain = element;
+                }
+            })
+            if(findDomain === null || findDomain === undefined) {
+                console.log("nie znaleziono domeny");
+                return null;
+            }
+            findDomain.usedTime = findDomain.usedTime + 0.1;
+            memoDomainList = memoDomainList.map((element)=> {
+                if(element.id === findDomain.id) {
+                    return findDomain;
+                } else {
+                    return element;
+                }
+            })
+            window.localStorage.setItem('domainList', JSON.stringify(memoDomainList));
+
+            if(findDomain.usedTime >= findDomain.time) {
+                setShowPopUpEnd(true);
+            }
+        }, 6000)
+
+        return () => {
+            clearInterval(interval)
+        }
+    }, [])
+
+    const previousPageEvent = () => {
         iframeElement.current.contentWindow.history.back();
     }
-    const nextPageEvent = (event) => {
+    const nextPageEvent = () => {
         iframeElement.current.contentWindow.history.forward();
     }
-    const reloadPageEvent = (event) => {
+    const reloadPageEvent = () => {
         iframeElement.current.contentWindow.location.reload();
     }
     const writeUrlEvent = (event) => {
-        let urlAddress = event.target.value;
-        iframeElement.current.src = urlAddress;
-    }
+        let domain = event.target.value;
+        let findDomain;
+        const memoDomainList = JSON.parse(window.localStorage.getItem('domainList')) || [];
+        memoDomainList.forEach((element)=> {
+            if(element.url === domain) {
+                findDomain = element;
+            }
+        })
 
+        if(findDomain === null || findDomain === undefined) {
+            const id = new Date().getTime();
+            findDomain = {url: domain,time: 1, usedTime: 0, break: 1, usedBreak: 0, id: id}
+            memoDomainList.push(findDomain);
+            window.localStorage.setItem('domainList', JSON.stringify(memoDomainList));
+            iframeElement.current.src = domain;
+        } else if(findDomain.usedTime >= findDomain.time) {
+            setShowPopUpEnd(true);
+        } else if(findDomain.usedTime < findDomain.time){
+            iframeElement.current.src = domain;
+        }
+        //więcej if-ów
+    }
+    const closePopUpEndEvent = () => {
+        setShowPopUpEnd(false);
+        window.location.href = window.location.href + "panel";
+    }
+    let popUpEnd = null;
+
+    if (showPopUpEnd) {
+        popUpEnd = < PopUpEnd onClose={closePopUpEndEvent}  />;
+    }
     return <>
         <header>
             <div className="headerBrowserContainer">
@@ -55,6 +124,7 @@ const Browser = () => {
         <section className="mainBrowserSection">
             <iframe src=""  className="realBrowser" ref={ iframeElement }></iframe>
         </section>
+        { popUpEnd }
     </>
 }
 

@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { some_domain_list } from "./some_domain_list";
 import {DomainComponent} from "./domain_component";
 import { PopUpForm } from "./pop_up_form"
 
@@ -34,14 +33,14 @@ const Dashboard = () => {
     }
     const addingDomainTimeAndBreak = (domain, time, breakTime) => {
         const id = new Date().getTime();
-        setDomainList(prevState => [...prevState, {url: domain,time: time, break: breakTime, id: id}])
+        setDomainList(prevState => [...prevState, {url: domain,time: time, usedTime: 0, break: breakTime, usedBreak: 0, id: id}])
         closePopUpFormEvent();
     }
     const editingDomainTimeAndBreak = (domain, time, breakTime, id) => {
         setDomainList(prevState => {
             return prevState.map((element) => {
                 if(element.id === id) {
-                    return {url: domain,time: time, break: breakTime};
+                    return {url: domain,time: time, usedTime: 0, break: breakTime, usedBreak: 0};
                 } else {
                     return element;
                 }

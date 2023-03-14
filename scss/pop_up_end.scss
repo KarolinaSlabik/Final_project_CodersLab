@@ -1,0 +1,31 @@
+@import "style.scss";
+
+.pop_up-endBackground {
+  width: 100%;
+  height: 100%;
+  background-color: $turquoiseColor;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  .pop_up-endBox {
+    width: 600px;
+    height: 400px;
+    background-color: $orangeColor;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .pop_up-endText {
+      width: 500px;
+      height: 80px;
+      text-align: center;
+      font-size: 66px;
+      font-weight: 700;
+      font-family: Inter, sans-serif;
+      color: $beigeColor;
+    }
+  }
+}

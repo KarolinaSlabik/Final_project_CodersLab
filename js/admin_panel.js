@@ -20,7 +20,8 @@ const AdminPanel = () => {
     }
     const logOutEvent = () => {
         setLogIn(false);
-        window.localStorage.setItem('user', null);
+        setUserName("");
+        window.localStorage.removeItem('user');
     }
 
     if(logIn === true) {
