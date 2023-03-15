@@ -2,9 +2,11 @@ import React, {useRef, useState, useEffect} from 'react';
 import "../scss/browser.scss";
 import { Link } from  "react-router-dom";
 import {PopUpEnd} from "./pop_up_end";
+import {PopUpBlackList} from "./pop_up_blackList";
 
 const Browser = () => {
     const [showPopUpEnd, setShowPopUpEnd] = useState(false);
+    const [showPopUpBlackList, setShowPopUpBlackList] = useState(false);
 
     const iframeElement = useRef(null);
 
@@ -14,6 +16,18 @@ const Browser = () => {
             if(domain === "") {
                 return null;
             }
+
+            let findDomainFromWhiteList;
+            const memoDomainWhiteList = JSON.parse(window.localStorage.getItem('domainWhiteList')) || [];
+            memoDomainWhiteList.forEach((element) => {
+                if(element.url === domain) {
+                    findDomainFromWhiteList = element;
+                }
+            })
+            if(findDomainFromWhiteList !== null && findDomainFromWhiteList !== undefined) {
+                return null;
+            }
+
             let findDomain;
             let memoDomainList = JSON.parse(window.localStorage.getItem('domainList')) || [];
             memoDomainList.forEach((element)=> {
@@ -71,6 +85,31 @@ const Browser = () => {
     }
     const writeUrlEvent = (event) => {
         let domain = event.target.value;
+
+        let findDomainFromBlackList;
+        const memoDomainBlackList = JSON.parse(window.localStorage.getItem('domainBlackList')) || [];
+        memoDomainBlackList.forEach((element) => {
+            if(element.url === domain) {
+                findDomainFromBlackList = element;
+            }
+        })
+        if(findDomainFromBlackList !== null && findDomainFromBlackList !== undefined) {
+            setShowPopUpBlackList(true);
+            return null;
+        }
+
+        let findDomainFromWhiteList;
+        const memoDomainWhiteList = JSON.parse(window.localStorage.getItem('domainWhiteList')) || [];
+        memoDomainWhiteList.forEach((element) => {
+            if(element.url === domain) {
+                findDomainFromWhiteList = element;
+            }
+        })
+        if(findDomainFromWhiteList !== null && findDomainFromWhiteList !== undefined) {
+            iframeElement.current.src = domain;
+            return null;
+        }
+
         let findDomain;
         const memoDomainList = JSON.parse(window.localStorage.getItem('domainList')) || [];
         memoDomainList.forEach((element)=> {
@@ -90,16 +129,22 @@ const Browser = () => {
         } else if(findDomain.usedTime < findDomain.time){
             iframeElement.current.src = domain;
         }
-        //więcej if-ów
     }
     const closePopUpEndEvent = () => {
         setShowPopUpEnd(false);
         window.location.href = window.location.href + "panel";
     }
-    let popUpEnd = null;
+    const closePopUpBlackListEvent = () => {
+        setShowPopUpBlackList(false);
+    }
+
+    let popUp = null;
 
     if (showPopUpEnd) {
-        popUpEnd = < PopUpEnd onClose={closePopUpEndEvent}  />;
+        popUp = < PopUpEnd onClose={closePopUpEndEvent}  />;
+    }
+    if (showPopUpBlackList) {
+        popUp = < PopUpBlackList onClose={closePopUpBlackListEvent} />;
     }
     return <>
         <header>
@@ -139,7 +184,7 @@ const Browser = () => {
         <section className="mainBrowserSection">
             <iframe src=""  className="realBrowser" ref={ iframeElement }></iframe>
         </section>
-        { popUpEnd }
+        { popUp }
     </>
 }
 
