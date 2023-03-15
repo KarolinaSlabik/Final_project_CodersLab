@@ -1,0 +1,29 @@
+@import "style.scss";
+
+.whiteList_pop_up-formBackground {
+  width: 100%;
+  height: 100%;
+  background-color: $navyBlueTransparentColor;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  .whiteList_pop_up-formBox {
+    width: 600px;
+    height: 270px;
+    background-color: $orangeColor;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    form {
+      width: 500px;
+      height: 170px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+}

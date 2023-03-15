@@ -1,0 +1,47 @@
+@import "style.scss";
+
+.domainWhiteList {
+  width: 100%;
+  height: 710px;
+  //overflow-y: scroll;
+}
+.plusWhiteListIcon {
+  width: 48px;
+  height: 48px;
+  transform: rotate(45deg);
+  position: relative;
+  left: 1494px;
+  top: 45px;
+}
+
+.domainWhiteListComponent {
+  width: calc(100% - 136px);
+  height: 81px;
+  border-radius: 10px;
+  background-color: $beigeColor;
+  color: $navyBlueColor;
+  margin-top: 45px;
+  margin-left: 40px;
+  font-size: 20px;
+  font-family: Inter, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .domainWhiteListTextBox {
+    width: calc(100% - 220px);
+    height: 23px;
+    p {
+      margin-top: 0;
+    }
+  }
+  .domainWhiteListButtonBox {
+    width: 194px;
+    height: 48px;
+    display: flex;
+    justify-content: space-between;
+    .binWhiteListIcon {
+      width: 30px;
+      height: 30px;
+    }
+  }
+}
