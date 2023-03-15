@@ -9,7 +9,7 @@ const Browser = () => {
     const iframeElement = useRef(null);
 
     useEffect(() => {
-        const interval = setInterval(() => {
+        const intervalToAddTimeToUsedTime = setInterval(() => {
             const domain = iframeElement.current.src;
             if(domain === "") {
                 return null;
@@ -40,8 +40,23 @@ const Browser = () => {
             }
         }, 6000)
 
+        const intervalToAddTimeToUsedBreak = setInterval(() => {
+            let memoDomainList = JSON.parse(window.localStorage.getItem('domainList')) || [];
+            memoDomainList = memoDomainList.map((element) => {
+                if(element.usedTime >= element.time) {
+                    element.usedBreak = element.usedBreak + 0.1;
+                }
+                if(element.usedBreak >= element.break) {
+                    element.usedBreak = 0;
+                    element.usedTime = 0;
+                }
+                return element;
+            })
+            window.localStorage.setItem('domainList', JSON.stringify(memoDomainList));
+        }, 6000)
         return () => {
-            clearInterval(interval)
+            clearInterval(intervalToAddTimeToUsedTime)
+            clearInterval(intervalToAddTimeToUsedBreak)
         }
     }, [])
 
