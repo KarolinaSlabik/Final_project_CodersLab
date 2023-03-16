@@ -50,10 +50,10 @@ GNU GPL v3
 
 
 ## TODO list
--[ ] Add logic and view to statistics in panel
--[ ] Add set default time to use and time break 
--[ ] Add validation for all input boxes like: url, number, etc.
--[ ] Add titles for *MainSection* 
+- [ ] Add logic and view to statistics in panel
+- [ ] Add set default time to use and time break 
+- [ ] Add validation for all input boxes like: url, number, etc.
+- [ ] Add titles for *MainSection* 
 
 
 ## Used public icons
